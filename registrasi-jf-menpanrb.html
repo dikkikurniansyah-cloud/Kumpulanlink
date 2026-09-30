@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registrasi JF — Rekomendasi MenPAN RB | Kab. Indragiri Hulu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#182B4A;
+    --navy-deep:#101d33;
+    --paper:#F7F4EC;
+    --paper-card:#FFFFFF;
+    --line:#DCD5C3;
+    --gold:#A9792C;
+    --ink:#2A2A28;
+    --ink-soft:#6B6559;
+    --green:#3B6E52;
+    --green-bg:#E6EEE7;
+    --amber:#93641E;
+    --amber-bg:#F3E7D0;
+    --red:#8C3B36;
+    --red-bg:#F3E2DF;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .letterhead{
+    background:var(--navy);
+    background-image:linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color:#EFE9DA;
+    padding:28px 32px 24px;
+    border-bottom:3px solid var(--gold);
+  }
+  .letterhead-inner{
+    max-width:1180px;
+    margin:0 auto;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .lh-title{
+    font-family:'Source Serif 4', serif;
+    font-weight:700;
+    font-size:26px;
+    line-height:1.25;
+    margin:0 0 6px 0;
+    letter-spacing:0.2px;
+  }
+  .lh-sub{
+    margin:0;
+    font-size:14px;
+    color:#C9C0A8;
+    font-weight:400;
+  }
+  .lh-badge{
+    font-size:12px;
+    color:#C9C0A8;
+    border:1px solid rgba(233,225,201,0.3);
+    padding:6px 12px;
+    border-radius:2px;
+    white-space:nowrap;
+  }
+  .lh-badge b{color:#EFE9DA; font-weight:600;}
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:24px 32px 56px;
+  }
+
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-bottom:22px;
+  }
+  .stat-card{
+    background:var(--paper-card);
+    border:1px solid var(--line);
+    border-left:4px solid var(--navy);
+    padding:14px 16px;
+  }
+  .stat-card.st-green{border-left-color:var(--green);}
+  .stat-card.st-amber{border-left-color:var(--amber);}
+  .stat-card.st-red{border-left-color:var(--red);}
+  .stat-num{
+    font-family:'Source Serif 4', serif;
+    font-size:28px;
+    font-weight:700;
+    line-height:1;
+    margin-bottom:4px;
+  }
+  .stat-label{
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+
+  .toolbar{
+    background:var(--paper-card);
+    border:1px solid var(--line);
+    padding:16px;
+    margin-bottom:0;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .field{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+  }
+  .field label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--ink-soft);
+    font-weight:600;
+  }
+  .field input[type="text"], .field select{
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+    padding:9px 10px;
+    border:1px solid var(--line);
+    background:#fff;
+    color:var(--ink);
+    border-radius:2px;
+    min-width:180px;
+  }
+  #search{min-width:260px;}
+  .field select{min-width:220px;}
+  .toolbar .spacer{flex:1;}
+  .btn{
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    font-weight:600;
+    padding:10px 16px;
+    border:1px solid var(--navy);
+    background:var(--navy);
+    color:#fff;
+    border-radius:2px;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:background 0.15s ease;
+  }
+  .btn:hover{background:var(--navy-deep);}
+  .btn.secondary{
+    background:#fff;
+    color:var(--navy);
+  }
+  .btn.secondary:hover{background:#F1EEE3;}
+
+  .result-line{
+    font-size:13px;
+    color:var(--ink-soft);
+    padding:10px 2px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+
+  .table-shell{
+    background:var(--paper-card);
+    border:1px solid var(--line);
+    border-top:none;
+    overflow:auto;
+    max-height:68vh;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+  }
+  thead th{
+    position:sticky;
+    top:0;
+    background:#EFEADB;
+    color:var(--navy-deep);
+    text-align:left;
+    padding:10px 12px;
+    font-weight:600;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    border-bottom:2px solid var(--line);
+    white-space:nowrap;
+    cursor:pointer;
+    user-select:none;
+  }
+  thead th:hover{background:#E7E1CE;}
+  thead th .arrow{opacity:0.4; font-size:10px; margin-left:4px;}
+  tbody td{
+    padding:9px 12px;
+    border-bottom:1px solid #EEE9DC;
+    vertical-align:top;
+  }
+  tbody tr:hover{background:#FBF9F2;}
+  tr.main-row{cursor:pointer;}
+  tr.detail-row td{
+    background:#FAF8F1;
+    padding:14px 12px 18px 34px;
+    border-bottom:1px solid #EEE9DC;
+  }
+  .chevron{
+    display:inline-block;
+    width:14px;
+    color:var(--gold);
+    font-size:11px;
+  }
+  .detail-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:20px;
+  }
+  .detail-block{}
+  .detail-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--ink-soft);
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .detail-date{
+    font-size:13.5px;
+    color:var(--ink);
+    margin-bottom:6px;
+    font-variant-numeric:tabular-nums;
+  }
+  td.no{color:var(--ink-soft); font-variant-numeric:tabular-nums; width:40px;}
+  td.jabatan{font-weight:600; color:var(--navy-deep); min-width:220px;}
+  td.unit{color:var(--ink-soft); min-width:200px;}
+  td.tanggal{white-space:nowrap; font-variant-numeric:tabular-nums;}
+  td.ket{color:var(--ink-soft); font-style:italic; max-width:160px;}
+
+  .status-pill{
+    display:inline-block;
+    font-size:11px;
+    font-weight:600;
+    padding:3px 9px;
+    border-radius:20px;
+    white-space:nowrap;
+  }
+  .status-pill.done{background:var(--green-bg); color:var(--green);}
+  .status-pill.progress{background:var(--amber-bg); color:var(--amber);}
+  .status-pill.none{background:var(--red-bg); color:var(--red);}
+
+  td.berkas{min-width:150px;}
+  .berkas-row{margin-bottom:4px;}
+  .berkas-row:last-child{margin-bottom:0;}
+  .drive-link{
+    color:var(--navy);
+    text-decoration:none;
+    font-size:12.5px;
+    border-bottom:1px solid var(--line);
+    display:inline-block;
+    white-space:nowrap;
+  }
+  .drive-link:hover{border-color:var(--navy); color:var(--gold);}
+  .drive-link.dl{color:var(--green);}
+  .drive-link.dl:hover{border-color:var(--green); color:var(--green);}
+  .dash{color:#C7C1AF;}
+
+  .empty-state{
+    padding:60px 20px;
+    text-align:center;
+    color:var(--ink-soft);
+  }
+  .empty-state .big{
+    font-family:'Source Serif 4', serif;
+    font-size:20px;
+    color:var(--ink);
+    margin-bottom:6px;
+  }
+
+  footer{
+    max-width:1180px;
+    margin:0 auto;
+    padding:18px 32px 40px;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width: 720px){
+    .stats{grid-template-columns:repeat(2,1fr);}
+    .letterhead{padding:20px 18px;}
+    .wrap{padding:18px 14px 40px;}
+    .lh-title{font-size:20px;}
+    #search{min-width:0; width:100%;}
+    .field select{min-width:0; width:100%;}
+    .toolbar{flex-direction:column; align-items:stretch;}
+    .detail-grid{grid-template-columns:1fr; gap:14px;}
+    tr.detail-row td{padding-left:16px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="letterhead">
+  <div class="letterhead-inner">
+    <div>
+      <p class="lh-title">Jabatan Fungsional yang Direkomendasikan MenPAN RB</p>
+      <p class="lh-sub">Di Lingkungan Pemerintah Kabupaten Indragiri Hulu</p>
+    </div>
+    <div class="lh-badge">Diperbarui <b>2026</b> &nbsp;·&nbsp; <b id="badgeTotal">245</b> jabatan tercatat</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-num" id="statTotal">0</div>
+      <div class="stat-label">Total baris jabatan</div>
+    </div>
+    <div class="stat-card st-green">
+      <div class="stat-num" id="statDone">0</div>
+      <div class="stat-label">Sudah rekom MenPAN RB</div>
+    </div>
+    <div class="stat-card st-amber">
+      <div class="stat-num" id="statProgress">0</div>
+      <div class="stat-label">Baru rekom instansi pembina</div>
+    </div>
+    <div class="stat-card st-red">
+      <div class="stat-num" id="statNone">0</div>
+      <div class="stat-label">Belum ada rekomendasi</div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <div class="field">
+      <label for="search">Cari</label>
+      <input type="text" id="search" placeholder="Cari nama jabatan atau unit organisasi…">
+    </div>
+    <div class="field">
+      <label for="unitFilter">Unit organisasi</label>
+      <select id="unitFilter"><option value="">Semua unit</option></select>
+    </div>
+    <div class="field">
+      <label for="statusFilter">Status rekomendasi</label>
+      <select id="statusFilter">
+        <option value="">Semua status</option>
+        <option value="done">Sudah rekom MenPAN RB</option>
+        <option value="progress">Baru rekom instansi pembina</option>
+        <option value="none">Belum ada rekomendasi</option>
+      </select>
+    </div>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="result-line">
+    <span id="resultCount">Menampilkan 0 dari 0 baris</span>
+    <span id="resetHint" style="cursor:pointer; text-decoration:underline; display:none;">Reset filter</span>
+  </div>
+
+  <div class="table-shell">
+    <table id="dataTable">
+      <thead>
+        <tr>
+          <th data-key="no">No <span class="arrow"></span></th>
+          <th data-key="jabatan">Jabatan Fungsional <span class="arrow"></span></th>
+          <th data-key="unit">Unit Organisasi <span class="arrow"></span></th>
+          <th data-key="ket">Keterangan <span class="arrow"></span></th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <div class="big">Tidak ada hasil</div>
+      <div>Coba ubah kata kunci pencarian atau filter.</div>
+    </div>
+  </div>
+
+  <footer>
+    Sumber: JF_REKOM_MENPAN_RB_2026.xlsx — sheet "GABUNGAN PERANGKAT DAERAH 2026". Tautan berkas mengarah ke Google Drive instansi terkait.
+  </footer>
+
+</div>
+
+<script>
+const RAW_DATA = [{"no": "1", "jabatan": "JF Analis Kebijakan", "unit": "Sekretariat Daerah", "rekom_instansi": "7 Februari 2025", "drive_instansi": "https://drive.google.com/file/d/1Hwml78QfTKBFKihkjtM5-k1IUTSCXFZ4/view?usp=drive_link", "rekom_menpan": "24 Mei 2025", "drive_menpan": "https://drive.google.com/file/d/1L5sxCCPCJOgQG-ZYooM2L9SqB3Tbxeiv/view?usp=drive_link", "ket": ""}, {"no": "2", "jabatan": "JF Analis Sumber Daya Manusia Aparatur", "unit": "Sekretariat Daerah", "rekom_instansi": "19 Maret 2024", "drive_instansi": "https://drive.google.com/file/d/1nMgqkvEG18yZ8tipEqHCpTAVrKAIM1Hc/view?usp=drive_link", "rekom_menpan": "18 Juni 2024", "drive_menpan": "https://drive.google.com/file/d/115yT3lPzrShNjQdjNj_O8RCrD4WdZllb/view?usp=drive_link", "ket": ""}, {"no": "3", "jabatan": "JF Arsiparis", "unit": "Sekretariat Daerah", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "4", "jabatan": "JF Pranata Komputer", "unit": "Sekretariat Daerah", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "5", "jabatan": "JF Analis Hukum", "unit": "Sekretariat Daerah", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "6", "jabatan": "JF Perancang Perundang-Undangan", "unit": "Sekretariat Daerah", "rekom_instansi": "17 Oktober 2025", "drive_instansi": "https://drive.google.com/file/d/165p-IBUgVKOm2TU-etWHBNpJjkw1NUkP/view?usp=drive_link", "rekom_menpan": "28 April 2026", "drive_menpan": "https://drive.google.com/file/d/18-mFBRkNJD8Fiz9a-8yKmmIvRgnTIk5V/view?usp=drive_link", "ket": ""}, {"no": "7", "jabatan": "JF Perencana", "unit": "Sekretariat Daerah", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "8", "jabatan": "JF Pengelola Pengadaan Barang/Jasa", "unit": "Sekretariat Daerah", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "9", "jabatan": "JF Surveyor Pemetaan", "unit": "Sekretariat Daerah", "rekom_instansi": "7 Juli 2026", "drive_instansi": "https://drive.google.com/file/d/1uF7-6QEXI4KQdOJqoTDiKXeXTXn6Bg2U/view?usp=drive_link", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "10", "jabatan": "JF Pranata Hubungan Masyarakat", "unit": "Sekretariat Daerah", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "11", "jabatan": "JF Analis Hak Asasi Manusia", "unit": "Sekretariat Daerah", "rekom_instansi": "19 Mei 2026", "drive_instansi": "https://drive.google.com/file/d/1Q18cVZxHtUxNz41QMM1UBig1-Q1C-eg_/view?usp=drive_link", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "12", "jabatan": "JF Analis Kerja Sama", "unit": "Sekretariat Daerah", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "13", "jabatan": "JF Analis Kebijakan", "unit": "Sekretariat Dewan Perwakilan Rakyat Daerah", "rekom_instansi": "7 Februari 2025", "drive_instansi": "https://drive.google.com/file/d/1Hwml78QfTKBFKihkjtM5-k1IUTSCXFZ4/view?usp=drive_link", "rekom_menpan": "24 Mei 2025", "drive_menpan": "https://drive.google.com/file/d/1L5sxCCPCJOgQG-ZYooM2L9SqB3Tbxeiv/view?usp=drive_link", "ket": ""}, {"no": "14", "jabatan": "JF Perisalah Legislatif", "unit": "Sekretariat Dewan Perwakilan Rakyat Daerah", "rekom_instansi": "23 Juni 2026", "drive_instansi": "https://drive.google.com/file/d/1MwqPzqG4MKIvm16OWa4yt2IOoTonU7Hx/view?usp=drive_link", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "15", "jabatan": "JF Arsiparis", "unit": "Sekretariat Dewan Perwakilan Rakyat Daerah", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "16", "jabatan": "JF Pranata Komputer", "unit": "Sekretariat Dewan Perwakilan Rakyat Daerah", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "17", "jabatan": "JF Perancang Perundang-Undangan", "unit": "Sekretariat Dewan Perwakilan Rakyat Daerah", "rekom_instansi": "17 Oktober 2025", "drive_instansi": "https://drive.google.com/file/d/165p-IBUgVKOm2TU-etWHBNpJjkw1NUkP/view?usp=drive_link", "rekom_menpan": "28 April 2026", "drive_menpan": "https://drive.google.com/file/d/18-mFBRkNJD8Fiz9a-8yKmmIvRgnTIk5V/view?usp=drive_link", "ket": ""}, {"no": "18", "jabatan": "JF Perencana", "unit": "Sekretariat Dewan Perwakilan Rakyat Daerah", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "19", "jabatan": "JF Analis Keuangan Pusat dan Daerah", "unit": "Sekretariat Dewan Perwakilan Rakyat Daerah", "rekom_instansi": "19 Mei 2025", "drive_instansi": "https://drive.google.com/file/d/1JjqiLPnkXKN6rYA3fmpznxbLtqszLaEl/view?usp=drive_link", "rekom_menpan": "3 Agustus 2025", "drive_menpan": "https://drive.google.com/file/d/1vHQWVwQzIjid0YvnojSVXL_08i9SWXKr/view?usp=sharing", "ket": ""}, {"no": "20", "jabatan": "JF Pranata Hubungan Masyarakat", "unit": "Sekretariat Dewan Perwakilan Rakyat Daerah", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "21", "jabatan": "JF Asisten Perisalah Legislatif", "unit": "Sekretariat Dewan Perwakilan Rakyat Daerah", "rekom_instansi": "23 Juni 2026", "drive_instansi": "https://drive.google.com/file/d/1MwqPzqG4MKIvm16OWa4yt2IOoTonU7Hx/view?usp=drive_link", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "22", "jabatan": "JF Auditor", "unit": "INSPEKTORAT", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "19 Januari 2023", "drive_menpan": "https://drive.google.com/file/d/1HPZsdvR99_4x9yGb81cKkiXxCXEv7kLM/view?usp=drive_link", "ket": ""}, {"no": "23", "jabatan": "JF Pengawas Penyelenggaraan Urusan Pemerintahan Daerah", "unit": "INSPEKTORAT", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "19 Januari 2023", "drive_menpan": "https://drive.google.com/file/d/1HPZsdvR99_4x9yGb81cKkiXxCXEv7kLM/view?usp=drive_link", "ket": ""}, {"no": "24", "jabatan": "JF Perencana", "unit": "INSPEKTORAT", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "25", "jabatan": "JF Arsiparis", "unit": "INSPEKTORAT", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "26", "jabatan": "JF Pranata Komputer", "unit": "INSPEKTORAT", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "27", "jabatan": "JF Pengembang Teknologi Pembelajaran", "unit": "DINAS PENDIDIKAN DAN KEBUDAYAAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "28", "jabatan": "JF Pengawas Sekolah", "unit": "DINAS PENDIDIKAN DAN KEBUDAYAAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "18 Juni 2024", "drive_menpan": "https://drive.google.com/file/d/115yT3lPzrShNjQdjNj_O8RCrD4WdZllb/view?usp=drive_link", "ket": ""}, {"no": "29", "jabatan": "JF Pamong Belajar", "unit": "DINAS PENDIDIKAN DAN KEBUDAYAAN", "rekom_instansi": "18 November 2024", "drive_instansi": "https://drive.google.com/file/d/1sk9xsFrzszWr1966aYhTJHA8ywQcCHCB/view?usp=drive_link", "rekom_menpan": "2 Januari 2025", "drive_menpan": "https://drive.google.com/file/d/1RZJvDw0wOcMKYLAhJX-4mLxfIQOruTRP/view?usp=drive_link", "ket": ""}, {"no": "30", "jabatan": "JF Penilik", "unit": "DINAS PENDIDIKAN DAN KEBUDAYAAN", "rekom_instansi": "18 November 2024", "drive_instansi": "https://drive.google.com/file/d/1sk9xsFrzszWr1966aYhTJHA8ywQcCHCB/view?usp=drive_link", "rekom_menpan": "19 Januari 2023", "drive_menpan": "https://drive.google.com/file/d/1RZJvDw0wOcMKYLAhJX-4mLxfIQOruTRP/view?usp=drive_link", "ket": ""}, {"no": "31", "jabatan": "JF Guru", "unit": "DINAS PENDIDIKAN DAN KEBUDAYAAN", "rekom_instansi": "18 November 2024", "drive_instansi": "https://drive.google.com/file/d/1sk9xsFrzszWr1966aYhTJHA8ywQcCHCB/view?usp=drive_link", "rekom_menpan": "2 Januari 2025", "drive_menpan": "https://drive.google.com/file/d/1RZJvDw0wOcMKYLAhJX-4mLxfIQOruTRP/view?usp=drive_link", "ket": ""}, {"no": "32", "jabatan": "JF Perencana", "unit": "DINAS PENDIDIKAN DAN KEBUDAYAAN", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "33", "jabatan": "JF Analis Sumber Daya Manusia Aparatur", "unit": "DINAS PENDIDIKAN DAN KEBUDAYAAN", "rekom_instansi": "19 Maret 2024", "drive_instansi": "https://drive.google.com/file/d/1nMgqkvEG18yZ8tipEqHCpTAVrKAIM1Hc/view?usp=drive_link", "rekom_menpan": "18 Juni 2024", "drive_menpan": "https://drive.google.com/file/d/115yT3lPzrShNjQdjNj_O8RCrD4WdZllb/view?usp=drive_link", "ket": ""}, {"no": "34", "jabatan": "JF Widyaprada", "unit": "DINAS PENDIDIKAN DAN KEBUDAYAAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "35", "jabatan": "JF Pengelola Pengadaan Barang/Jasa", "unit": "DINAS PENDIDIKAN DAN KEBUDAYAAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "36", "jabatan": "JF Pamong Budaya", "unit": "DINAS PENDIDIKAN DAN KEBUDAYAAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "37", "jabatan": "JF Sumber Daya Manusia Aparatur", "unit": "DINAS PENDIDIKAN DAN KEBUDAYAAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "36", "jabatan": "JF Analis Hak Asasi Manusia", "unit": "DINAS PENDIDIKAN DAN KEBUDAYAAN", "rekom_instansi": "19 Mei 2026", "drive_instansi": "https://drive.google.com/file/d/1Q18cVZxHtUxNz41QMM1UBig1-Q1C-eg_/view?usp=drive_link", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "39", "jabatan": "JF Perencana", "unit": "DINAS KESEHATAN", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "40", "jabatan": "JF Analis Sumber Daya Manuasia Aparatur", "unit": "DINAS KESEHATAN", "rekom_instansi": "19 Maret 2024", "drive_instansi": "https://drive.google.com/file/d/1nMgqkvEG18yZ8tipEqHCpTAVrKAIM1Hc/view?usp=drive_link", "rekom_menpan": "18 Juni 2024", "drive_menpan": "https://drive.google.com/file/d/115yT3lPzrShNjQdjNj_O8RCrD4WdZllb/view?usp=drive_link", "ket": ""}, {"no": "41", "jabatan": "JF Administrator Kesehatan", "unit": "DINAS KESEHATAN", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "42", "jabatan": "JF Epidemiolog Kesehatan", "unit": "DINAS KESEHATAN", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "43", "jabatan": "JF Entomolog Kesehatan", "unit": "DINAS KESEHATAN", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "44", "jabatan": "JF Tenaga Promosi Kesehatan dan Ilmu Perilaku", "unit": "DINAS KESEHATAN", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "45", "jabatan": "JF Analis Hukum", "unit": "DINAS KESEHATAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "46", "jabatan": "JF Nutrisionis", "unit": "DINAS KESEHATAN", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "47", "jabatan": "JF Tenaga Sanitasi Lingkungan", "unit": "DINAS KESEHATAN", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "48", "jabatan": "JF Pengawas Farmasi dan Makanan", "unit": "DINAS KESEHATAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "49", "jabatan": "JF Apoteker", "unit": "DINAS KESEHATAN", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "50", "jabatan": "JF Arsiparis", "unit": "DINAS KESEHATAN", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "51", "jabatan": "JF Pranata Komputer", "unit": "DINAS KESEHATAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "52", "jabatan": "JF Analis Hak Asasi Manusia", "unit": "DINAS KESEHATAN", "rekom_instansi": "19 Mei 2026", "drive_instansi": "https://drive.google.com/file/d/1Q18cVZxHtUxNz41QMM1UBig1-Q1C-eg_/view?usp=drive_link", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "53", "jabatan": "JF Apoteker", "unit": "UPTD INSTALASI FARMASI", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "54", "jabatan": "JF Asisten Apoteker", "unit": "UPTD INSTALASI FARMASI", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "55", "jabatan": "JF Administrator Kesehatan", "unit": "UPT PUSKESMAS", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "56", "jabatan": "JF Tenaga Promosi Kesehatan dan Ilmu Prilaku", "unit": "UPT PUSKESMAS", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "57", "jabatan": "JF Tenaga Sanitasi Lingkungan", "unit": "UPT PUSKESMAS", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "58", "jabatan": "JF Epidemiolog Kesehatan", "unit": "UPT PUSKESMAS", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "59", "jabatan": "JF Nutrisionis", "unit": "UPT PUSKESMAS", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "60", "jabatan": "JF Dokter", "unit": "UPT PUSKESMAS", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link  https://drive.google.com/file/d/1brhMjtDJs_YBRkakc0Nd3xBpFBhmyl_t/view?usp=drive_link", "ket": "2 Link"}, {"no": "61", "jabatan": "JF Dokter Gigi", "unit": "UPT PUSKESMAS", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "62", "jabatan": "JF Bidan", "unit": "UPT PUSKESMAS", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "63", "jabatan": "JF Perawat", "unit": "UPT PUSKESMAS", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "64", "jabatan": "JF Terapis Gigi dan Mulut", "unit": "UPT PUSKESMAS", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "65", "jabatan": "JF Apoteker", "unit": "UPT PUSKESMAS", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "66", "jabatan": "JF Asisten Apoteker", "unit": "UPT PUSKESMAS", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "67", "jabatan": "JF Pranata Laboratorium Kesehatan", "unit": "UPT PUSKESMAS", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025 dan 4 FEBRUARI 2026", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link  https://drive.google.com/file/d/1brhMjtDJs_YBRkakc0Nd3xBpFBhmyl_t/view?usp=drive_link", "ket": "ada 2 link"}, {"no": "68", "jabatan": "JF Perekam Medis", "unit": "UPT PUSKESMAS", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "69", "jabatan": "JF Psikolog Klinis", "unit": "UPT PUSKESMAS", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "70", "jabatan": "JF Fisioterapis", "unit": "UPT PUSKESMAS", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "71", "jabatan": "JF Analis Kebijakan", "unit": "DINAS PEKERJAAN UMUM, PENATAAN RUANG, PERUMAHAN, DAN KAWASAN PERMUKIMAN", "rekom_instansi": "7 Februari 2025", "drive_instansi": "https://drive.google.com/file/d/1Hwml78QfTKBFKihkjtM5-k1IUTSCXFZ4/view?usp=drive_link", "rekom_menpan": "24 Mei 2025", "drive_menpan": "https://drive.google.com/file/d/1L5sxCCPCJOgQG-ZYooM2L9SqB3Tbxeiv/view?usp=drive_link", "ket": ""}, {"no": "72", "jabatan": "JF Penata Kelola Jalan dan Jembatan", "unit": "DINAS PEKERJAAN UMUM, PENATAAN RUANG, PERUMAHAN, DAN KAWASAN PERMUKIMAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "73", "jabatan": "JF Penata Kelola Jalan Bangunan Gedung dan Kawasan Permukiman", "unit": "DINAS PEKERJAAN UMUM, PENATAAN RUANG, PERUMAHAN, DAN KAWASAN PERMUKIMAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "74", "jabatan": "JF Pembina Jasa Kontruksi", "unit": "DINAS PEKERJAAN UMUM, PENATAAN RUANG, PERUMAHAN, DAN KAWASAN PERMUKIMAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "75", "jabatan": "JF Pengelola Sumber Daya Air", "unit": "DINAS PEKERJAAN UMUM, PENATAAN RUANG, PERUMAHAN, DAN KAWASAN PERMUKIMAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "76", "jabatan": "JF Penyuluh Lingkungan Hidup", "unit": "DINAS PEKERJAAN UMUM, PENATAAN RUANG, PERUMAHAN, DAN KAWASAN PERMUKIMAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "77", "jabatan": "JF Penata Kelola Penyehatan Lingkungan", "unit": "DINAS PEKERJAAN UMUM, PENATAAN RUANG, PERUMAHAN, DAN KAWASAN PERMUKIMAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": "bidang air minum"}, {"no": "78", "jabatan": "JF Penata Ruang", "unit": "DINAS PEKERJAAN UMUM, PENATAAN RUANG, PERUMAHAN, DAN KAWASAN PERMUKIMAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "2024-04-02 00:00:00", "drive_menpan": "https://drive.google.com/file/d/1blMq4t3Limr2jeObyh2jlIhkvt9rPIVG/view?usp=drive_link", "ket": ""}, {"no": "79", "jabatan": "JF Perencana", "unit": "DINAS PEKERJAAN UMUM, PENATAAN RUANG, PERUMAHAN, DAN KAWASAN PERMUKIMAN", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "80", "jabatan": "JF Arsiparis", "unit": "DINAS PEKERJAAN UMUM, PENATAAN RUANG, PERUMAHAN, DAN KAWASAN PERMUKIMAN", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "81", "jabatan": "JF Pranata Komputer", "unit": "DINAS PEKERJAAN UMUM, PENATAAN RUANG, PERUMAHAN, DAN KAWASAN PERMUKIMAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "82", "jabatan": "JF Surveyor Pemetaan", "unit": "DINAS PEKERJAAN UMUM, PENATAAN RUANG, PERUMAHAN, DAN KAWASAN PERMUKIMAN", "rekom_instansi": "7 Juli 2026", "drive_instansi": "https://drive.google.com/file/d/1uF7-6QEXI4KQdOJqoTDiKXeXTXn6Bg2U/view?usp=drive_link", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "83", "jabatan": "JF Analis Kebijakan", "unit": "DINAS PENGENDALIAN PENDUDUK, KELUARGA BERENCANA, PEMBERDAYAAN PEREMPUAN, DAN PERLINDUNGAN ANAK", "rekom_instansi": "7 Februari 2025", "drive_instansi": "https://drive.google.com/file/d/1Hwml78QfTKBFKihkjtM5-k1IUTSCXFZ4/view?usp=drive_link", "rekom_menpan": "24 Mei 2025", "drive_menpan": "https://drive.google.com/file/d/1L5sxCCPCJOgQG-ZYooM2L9SqB3Tbxeiv/view?usp=drive_link", "ket": ""}, {"no": "84", "jabatan": "JF Penata Kependudukan dan Keluarga Berencana", "unit": "DINAS PENGENDALIAN PENDUDUK, KELUARGA BERENCANA, PEMBERDAYAAN PEREMPUAN, DAN PERLINDUNGAN ANAK", "rekom_instansi": "8 November 2024", "drive_instansi": "https://drive.google.com/file/d/14ZT8Qvl7QOFwI8SRFzccDhLvPoiKxbBu/view?usp=drive_link", "rekom_menpan": "2 Januari 2025", "drive_menpan": "https://drive.google.com/file/d/1RZJvDw0wOcMKYLAhJX-4mLxfIQOruTRP/view?usp=drive_link", "ket": ""}, {"no": "85", "jabatan": "JF Perencana", "unit": "DINAS PENGENDALIAN PENDUDUK, KELUARGA BERENCANA, PEMBERDAYAAN PEREMPUAN, DAN PERLINDUNGAN ANAK", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "86", "jabatan": "JF Arsiparis", "unit": "DINAS PENGENDALIAN PENDUDUK, KELUARGA BERENCANA, PEMBERDAYAAN PEREMPUAN, DAN PERLINDUNGAN ANAK", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "87", "jabatan": "JF Pranata Komputer", "unit": "DINAS PENGENDALIAN PENDUDUK, KELUARGA BERENCANA, PEMBERDAYAAN PEREMPUAN, DAN PERLINDUNGAN ANAK", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "84", "jabatan": "JF Analis Hak Asasi Manusia", "unit": "DINAS PENGENDALIAN PENDUDUK, KELUARGA BERENCANA, PEMBERDAYAAN PEREMPUAN, DAN PERLINDUNGAN ANAK", "rekom_instansi": "19 Mei 2026", "drive_instansi": "https://drive.google.com/file/d/1Q18cVZxHtUxNz41QMM1UBig1-Q1C-eg_/view?usp=drive_link", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "89", "jabatan": "JF Pengawas Lingkungan Hidup", "unit": "DINAS LINGKUNGAN HIDUP, KEBERSIHAN DAN PERTAMANAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "90", "jabatan": "JF Pengendali Dampak Lingkungan", "unit": "DINAS LINGKUNGAN HIDUP, KEBERSIHAN DAN PERTAMANAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "91", "jabatan": "JF Penyuluh Lingkungan Hidup", "unit": "DINAS LINGKUNGAN HIDUP, KEBERSIHAN DAN PERTAMANAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "92", "jabatan": "JF Pengendali Dampak Lingkungan", "unit": "DINAS LINGKUNGAN HIDUP, KEBERSIHAN DAN PERTAMANAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "93", "jabatan": "JF Penata Kelola Penyehatan Lingkunga", "unit": "DINAS LINGKUNGAN HIDUP, KEBERSIHAN DAN PERTAMANAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "94", "jabatan": "JF Perencana", "unit": "DINAS LINGKUNGAN HIDUP, KEBERSIHAN DAN PERTAMANAN", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "95", "jabatan": "JF Arsiparis", "unit": "DINAS LINGKUNGAN HIDUP, KEBERSIHAN DAN PERTAMANAN", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "96", "jabatan": "JF Pranata Komputer", "unit": "DINAS LINGKUNGAN HIDUP, KEBERSIHAN DAN PERTAMANAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "97", "jabatan": "JF Administrator Database Kependudukan", "unit": "DINAS KEPENDUDUKAN DAN PENCATATAN SIPIL", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "98", "jabatan": "JF Pranata Hubungan Masyarakat", "unit": "DINAS KEPENDUDUKAN DAN PENCATATAN SIPIL", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "99", "jabatan": "JF Perencana", "unit": "DINAS KEPENDUDUKAN DAN PENCATATAN SIPIL", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "100", "jabatan": "JF Arsiparis", "unit": "DINAS KEPENDUDUKAN DAN PENCATATAN SIPIL", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "101", "jabatan": "JF Pranata Komputer", "unit": "DINAS KEPENDUDUKAN DAN PENCATATAN SIPIL", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "102", "jabatan": "JF Analis Kebijakan", "unit": "DINAS PERINDUSTRIAN, PERDAGANGAN, KOPERASI, USAHA KECIL DAN MENENGAH", "rekom_instansi": "7 Februari 2025", "drive_instansi": "https://drive.google.com/file/d/1Hwml78QfTKBFKihkjtM5-k1IUTSCXFZ4/view?usp=drive_link", "rekom_menpan": "24 Mei 2025", "drive_menpan": "https://drive.google.com/file/d/1L5sxCCPCJOgQG-ZYooM2L9SqB3Tbxeiv/view?usp=drive_link", "ket": ""}, {"no": "103", "jabatan": "JF Pembina Industri", "unit": "DINAS PERINDUSTRIAN, PERDAGANGAN, KOPERASI, USAHA KECIL DAN MENENGAH", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "104", "jabatan": "JF Penyuluh Perindustrian dan Perdagangan", "unit": "DINAS PERINDUSTRIAN, PERDAGANGAN, KOPERASI, USAHA KECIL DAN MENENGAH", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "18 Juni 2024", "drive_menpan": "https://drive.google.com/file/d/115yT3lPzrShNjQdjNj_O8RCrD4WdZllb/view?usp=drive_link", "ket": ""}, {"no": "105", "jabatan": "JF Analis Perdagangan", "unit": "DINAS PERINDUSTRIAN, PERDAGANGAN, KOPERASI, USAHA KECIL DAN MENENGAH", "rekom_instansi": "3 Juli 2025", "drive_instansi": "https://drive.google.com/file/d/1YRP9HFQEIe_xwyzLBZoGpJkbHNug7jt6/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "106", "jabatan": "JF Pengawas Perdagangan", "unit": "DINAS PERINDUSTRIAN, PERDAGANGAN, KOPERASI, USAHA KECIL DAN MENENGAH", "rekom_instansi": "3 Juli 2025", "drive_instansi": "https://drive.google.com/file/d/1YRP9HFQEIe_xwyzLBZoGpJkbHNug7jt6/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "107", "jabatan": "JF Pengawas Koperasi", "unit": "DINAS PERINDUSTRIAN, PERDAGANGAN, KOPERASI, USAHA KECIL DAN MENENGAH", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "2 Januari 2025", "drive_menpan": "https://drive.google.com/file/d/1RZJvDw0wOcMKYLAhJX-4mLxfIQOruTRP/view?usp=drive_link", "ket": ""}, {"no": "108", "jabatan": "JF Penera", "unit": "DINAS PERINDUSTRIAN, PERDAGANGAN, KOPERASI, USAHA KECIL DAN MENENGAH", "rekom_instansi": "3 Juli 2025", "drive_instansi": "https://drive.google.com/file/d/1YRP9HFQEIe_xwyzLBZoGpJkbHNug7jt6/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "109", "jabatan": "JF Pengamat Tera", "unit": "DINAS PERINDUSTRIAN, PERDAGANGAN, KOPERASI, USAHA KECIL DAN MENENGAH", "rekom_instansi": "3 Juli 2025", "drive_instansi": "https://drive.google.com/file/d/1YRP9HFQEIe_xwyzLBZoGpJkbHNug7jt6/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "110", "jabatan": "JF Pengembang Kewirausahaan", "unit": "DINAS PERINDUSTRIAN, PERDAGANGAN, KOPERASI, USAHA KECIL DAN MENENGAH", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "7 Oktober 2024", "drive_menpan": "https://drive.google.com/file/d/1KFmfEYiwmaJLmiopBiSzJHKppxvEcDhM/view?usp=drive_link", "ket": ""}, {"no": "111", "jabatan": "JF Perencana", "unit": "DINAS PERINDUSTRIAN, PERDAGANGAN, KOPERASI, USAHA KECIL DAN MENENGAH", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "112", "jabatan": "JF Arsiparis", "unit": "DINAS PERINDUSTRIAN, PERDAGANGAN, KOPERASI, USAHA KECIL DAN MENENGAH", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "113", "jabatan": "JF Pranata Komputer", "unit": "DINAS PERINDUSTRIAN, PERDAGANGAN, KOPERASI, USAHA KECIL DAN MENENGAH", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "114", "jabatan": "JF Analis Kebijakan", "unit": "DINAS PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU", "rekom_instansi": "7 Februari 2025", "drive_instansi": "https://drive.google.com/file/d/1Hwml78QfTKBFKihkjtM5-k1IUTSCXFZ4/view?usp=drive_link", "rekom_menpan": "24 Mei 2025", "drive_menpan": "https://drive.google.com/file/d/1L5sxCCPCJOgQG-ZYooM2L9SqB3Tbxeiv/view?usp=drive_link", "ket": ""}, {"no": "115", "jabatan": "JF Perencana", "unit": "DINAS PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "116", "jabatan": "JF Penata Perizinan", "unit": "DINAS PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "26 Mei 2024", "drive_menpan": "https://drive.google.com/file/d/1IQI4ZdM1bgLyFt6NQsJbEx9xL4TrjURw/view?usp=drive_link", "ket": ""}, {"no": "117", "jabatan": "JF Penata Kelola Penanaman Modal", "unit": "DINAS PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "26 Mei 2024", "drive_menpan": "https://drive.google.com/file/d/1IQI4ZdM1bgLyFt6NQsJbEx9xL4TrjURw/view?usp=drive_link", "ket": ""}, {"no": "118", "jabatan": "JF Arsiparis", "unit": "DINAS PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "119", "jabatan": "JF Pranata Komputer", "unit": "DINAS PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "120", "jabatan": "JF Surveyor Pemetaan", "unit": "DINAS PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU", "rekom_instansi": "7 Juli 2026", "drive_instansi": "https://drive.google.com/file/d/1uF7-6QEXI4KQdOJqoTDiKXeXTXn6Bg2U/view?usp=drive_link", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "121", "jabatan": "JF Pengelola Produksi Perikanan Tangkap", "unit": "DINAS PERKEBUNAN, PETERNAKAN DAN PERIKANAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "122", "jabatan": "JF Analis Akuakultur", "unit": "DINAS PERKEBUNAN, PETERNAKAN DAN PERIKANAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "123", "jabatan": "JF Pembina Mutu Hasil Kelautan dan Perikanan", "unit": "DINAS PERKEBUNAN, PETERNAKAN DAN PERIKANAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "124", "jabatan": "JF Analis Pasar Hasil Perikanan", "unit": "DINAS PERKEBUNAN, PETERNAKAN DAN PERIKANAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "125", "jabatan": "JF Pengawas Benih Tananan", "unit": "DINAS PERKEBUNAN, PETERNAKAN DAN PERIKANAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "126", "jabatan": "JF Pengendali Organisme Pengganggu Tumbuhan", "unit": "DINAS PERKEBUNAN, PETERNAKAN DAN PERIKANAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "127", "jabatan": "JF Pengawas Mutu Hasil Pertanian", "unit": "DINAS PERKEBUNAN, PETERNAKAN DAN PERIKANAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "128", "jabatan": "JF Parasarana dan Sarana Ahli", "unit": "DINAS PERKEBUNAN, PETERNAKAN DAN PERIKANAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "129", "jabatan": "JF Pengawas Alat dan Mesin Pertanian", "unit": "DINAS PERKEBUNAN, PETERNAKAN DAN PERIKANAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "130", "jabatan": "JF Pengawas Bibit Ternak", "unit": "DINAS PERKEBUNAN, PETERNAKAN DAN PERIKANAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "3 Agustus 2025", "drive_menpan": "https://drive.google.com/file/d/1vHQWVwQzIjid0YvnojSVXL_08i9SWXKr/view?usp=sharing", "ket": ""}, {"no": "131", "jabatan": "JF Medik Veteriner", "unit": "DINAS PERKEBUNAN, PETERNAKAN DAN PERIKANAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "18 Juni 2024", "drive_menpan": "https://drive.google.com/file/d/115yT3lPzrShNjQdjNj_O8RCrD4WdZllb/view?usp=drive_link", "ket": ""}, {"no": "132", "jabatan": "JF Pengawas Mutu Pakan", "unit": "DINAS PERKEBUNAN, PETERNAKAN DAN PERIKANAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "3 Agustus 2025", "drive_menpan": "https://drive.google.com/file/d/1vHQWVwQzIjid0YvnojSVXL_08i9SWXKr/view?usp=sharing", "ket": ""}, {"no": "133", "jabatan": "JF Arsiparis", "unit": "DINAS PERKEBUNAN, PETERNAKAN DAN PERIKANAN", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "134", "jabatan": "JF Pranata Komputer", "unit": "DINAS PERKEBUNAN, PETERNAKAN DAN PERIKANAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "135", "jabatan": "JF Surveyor Pemetaan", "unit": "DINAS PERKEBUNAN, PETERNAKAN DAN PERIKANAN", "rekom_instansi": "7 Juli 2026", "drive_instansi": "https://drive.google.com/file/d/1uF7-6QEXI4KQdOJqoTDiKXeXTXn6Bg2U/view?usp=drive_link", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "136", "jabatan": "JF Analis Ketahanan Pangan", "unit": "DINAS KETAHANAN PANGAN, TANAMAN PANGAN DAN HORTIKULTURA", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "137", "jabatan": "JF Pengawas Benih Tanaman", "unit": "DINAS KETAHANAN PANGAN, TANAMAN PANGAN DAN HORTIKULTURA", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "138", "jabatan": "JF Pengawas Mutu  Hasil Pertanian", "unit": "DINAS KETAHANAN PANGAN, TANAMAN PANGAN DAN HORTIKULTURA", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "139", "jabatan": "JF Pengendali Organisme Pengganggu Tumbuhan", "unit": "DINAS KETAHANAN PANGAN, TANAMAN PANGAN DAN HORTIKULTURA", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "140", "jabatan": "JF Analis Prasarana dan Sarana Pertanian", "unit": "DINAS KETAHANAN PANGAN, TANAMAN PANGAN DAN HORTIKULTURA", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "141", "jabatan": "JF Pengawas Alat Mesin  dan  Pertanian", "unit": "DINAS KETAHANAN PANGAN, TANAMAN PANGAN DAN HORTIKULTURA", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "142", "jabatan": "JF Perencana", "unit": "DINAS KETAHANAN PANGAN, TANAMAN PANGAN DAN HORTIKULTURA", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "143", "jabatan": "JF Arsiparis", "unit": "DINAS KETAHANAN PANGAN, TANAMAN PANGAN DAN HORTIKULTURA", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "144", "jabatan": "JF Pranata Komputer", "unit": "DINAS KETAHANAN PANGAN, TANAMAN PANGAN DAN HORTIKULTURA", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "145", "jabatan": "JF Pekerja Sosial", "unit": "DINAS SOSIAL", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "146", "jabatan": "JF Penyuluh Sosial", "unit": "DINAS SOSIAL", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "147", "jabatan": "JF Perencana", "unit": "DINAS SOSIAL", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "148", "jabatan": "JF Arsiparis", "unit": "DINAS SOSIAL", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "149", "jabatan": "JF Pranata Komputer", "unit": "DINAS SOSIAL", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "150", "jabatan": "JF Mediator Hubungan Industrial", "unit": "DINAS TENAGA KERJA", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "3 Agustus 2025", "drive_menpan": "https://drive.google.com/file/d/1vHQWVwQzIjid0YvnojSVXL_08i9SWXKr/view?usp=sharing", "ket": ""}, {"no": "151", "jabatan": "JF Instruktur", "unit": "DINAS TENAGA KERJA", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "152", "jabatan": "JF Penggerak Swadaya Masyarakat", "unit": "DINAS TENAGA KERJA", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "2 Januari 2025", "drive_menpan": "https://drive.google.com/file/d/1RZJvDw0wOcMKYLAhJX-4mLxfIQOruTRP/view?usp=drive_link", "ket": ""}, {"no": "153", "jabatan": "JF Pengantar Kerja", "unit": "DINAS TENAGA KERJA", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "154", "jabatan": "JF Perencana", "unit": "DINAS TENAGA KERJA", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "155", "jabatan": "JF Arsiparis", "unit": "DINAS TENAGA KERJA", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "156", "jabatan": "JF Pranata Komputer", "unit": "DINAS TENAGA KERJA", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "157", "jabatan": "JF Analis Kebijakan", "unit": "DINAS PEMBERDAYAAN MASAYARAKAT DAN DESA", "rekom_instansi": "7 Februari 2025", "drive_instansi": "https://drive.google.com/file/d/1Hwml78QfTKBFKihkjtM5-k1IUTSCXFZ4/view?usp=drive_link", "rekom_menpan": "24 Mei 2025", "drive_menpan": "https://drive.google.com/file/d/1L5sxCCPCJOgQG-ZYooM2L9SqB3Tbxeiv/view?usp=drive_link", "ket": ""}, {"no": "158", "jabatan": "JF Analis Keuangan Pusat dan Daerah", "unit": "DINAS PEMBERDAYAAN MASAYARAKAT DAN DESA", "rekom_instansi": "19 Mei 2025", "drive_instansi": "https://drive.google.com/file/d/1JjqiLPnkXKN6rYA3fmpznxbLtqszLaEl/view?usp=drive_link", "rekom_menpan": "3 Agustus 2025", "drive_menpan": "https://drive.google.com/file/d/1vHQWVwQzIjid0YvnojSVXL_08i9SWXKr/view?usp=sharing", "ket": ""}, {"no": "159", "jabatan": "JF Penggerak Swadaya Masayarakat", "unit": "DINAS PEMBERDAYAAN MASAYARAKAT DAN DESA", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "2 Januari 2025", "drive_menpan": "https://drive.google.com/file/d/1RZJvDw0wOcMKYLAhJX-4mLxfIQOruTRP/view?usp=drive_link", "ket": ""}, {"no": "160", "jabatan": "JF Perencana", "unit": "DINAS PEMBERDAYAAN MASAYARAKAT DAN DESA", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "161", "jabatan": "JF Arsiparis", "unit": "DINAS PEMBERDAYAAN MASAYARAKAT DAN DESA", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "162", "jabatan": "JF Pranata Komputer", "unit": "DINAS PEMBERDAYAAN MASAYARAKAT DAN DESA", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "163", "jabatan": "JF Penguji Kendaraan Bermotor", "unit": "DINAS PERHUBUNGAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "164", "jabatan": "JF Perencana", "unit": "DINAS PERHUBUNGAN", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "165", "jabatan": "JF Pranata Komputer", "unit": "DINAS PERHUBUNGAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "166", "jabatan": "JF Arsiparis", "unit": "DINAS PERHUBUNGAN", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "167", "jabatan": "JF Perekayasa", "unit": "DINAS PERHUBUNGAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "168", "jabatan": "JF Analis Kebijakan", "unit": "DINAS PERHUBUNGAN", "rekom_instansi": "7 Februari 2025", "drive_instansi": "https://drive.google.com/file/d/1Hwml78QfTKBFKihkjtM5-k1IUTSCXFZ4/view?usp=drive_link", "rekom_menpan": "24 Mei 2025", "drive_menpan": "https://drive.google.com/file/d/1L5sxCCPCJOgQG-ZYooM2L9SqB3Tbxeiv/view?usp=drive_link", "ket": ""}, {"no": "169", "jabatan": "JF Pranata Hubungan Masyarakat", "unit": "DINAS KOMUNIKASI, INFORMATIKA, DAN STATISTIK", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "170", "jabatan": "JF Manggala Informatika", "unit": "DINAS KOMUNIKASI, INFORMATIKA, DAN STATISTIK", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "2024-04-30 00:00:00", "drive_menpan": "https://drive.google.com/file/d/1sbKQo5bWIHht8fsu-cVJBVM0BFCR9z0n/view?usp=drive_link", "ket": ""}, {"no": "171", "jabatan": "JF Sandiman", "unit": "DINAS KOMUNIKASI, INFORMATIKA, DAN STATISTIK", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "2024-04-30 00:00:00", "drive_menpan": "https://drive.google.com/file/d/1sbKQo5bWIHht8fsu-cVJBVM0BFCR9z0n/view?usp=drive_link", "ket": ""}, {"no": "172", "jabatan": "JF Statistisi", "unit": "DINAS KOMUNIKASI, INFORMATIKA, DAN STATISTIK", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "173", "jabatan": "JF Perencana", "unit": "DINAS KOMUNIKASI, INFORMATIKA, DAN STATISTIK", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "174", "jabatan": "JF Arsiparis", "unit": "DINAS KOMUNIKASI, INFORMATIKA, DAN STATISTIK", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "175", "jabatan": "JF Pranata Komputer", "unit": "DINAS KOMUNIKASI, INFORMATIKA, DAN STATISTIK", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "176", "jabatan": "JF Analis Kebijakan", "unit": "DINAS KEPEMUDAAN, OLAHRAGA DAN PARIWISATA", "rekom_instansi": "7 Februari 2025", "drive_instansi": "https://drive.google.com/file/d/1Hwml78QfTKBFKihkjtM5-k1IUTSCXFZ4/view?usp=drive_link", "rekom_menpan": "24 Mei 2025", "drive_menpan": "https://drive.google.com/file/d/1L5sxCCPCJOgQG-ZYooM2L9SqB3Tbxeiv/view?usp=drive_link", "ket": ""}, {"no": "177", "jabatan": "JF Adyatama Kepariwisataan dan Ekonomi Kreatif", "unit": "DINAS KEPEMUDAAN, OLAHRAGA DAN PARIWISATA", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "178", "jabatan": "JF Perencana", "unit": "DINAS KEPEMUDAAN, OLAHRAGA DAN PARIWISATA", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "179", "jabatan": "JF Arsiparis", "unit": "DINAS KEPEMUDAAN, OLAHRAGA DAN PARIWISATA", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "180", "jabatan": "JF Pranata Komputer", "unit": "DINAS KEPEMUDAAN, OLAHRAGA DAN PARIWISATA", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "181", "jabatan": "JF Perencana", "unit": "DINAS PERPUSTAKAAN DAN KEARSIPAN", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "182", "jabatan": "JF Arsiparis", "unit": "DINAS PERPUSTAKAAN DAN KEARSIPAN", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "183", "jabatan": "JF Pustakawan", "unit": "DINAS PERPUSTAKAAN DAN KEARSIPAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "184", "jabatan": "JF Asisten Perpustakaan", "unit": "DINAS PERPUSTAKAAN DAN KEARSIPAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "185", "jabatan": "JF Pranata Komputer", "unit": "DINAS PERPUSTAKAAN DAN KEARSIPAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "186", "jabatan": "JF Polisi Pamong Praja", "unit": "SATUAN POLISI PAMONG PRAJA", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "2024-04-16 00:00:00", "drive_menpan": "https://drive.google.com/file/d/1RnvySG89h39cv1yJLWttuwvmnwcYL8Yl/view?usp=drive_link", "ket": ""}, {"no": "187", "jabatan": "JF Arsiparis", "unit": "SATUAN POLISI PAMONG PRAJA", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "188", "jabatan": "JF Pranata Komputer", "unit": "SATUAN POLISI PAMONG PRAJA", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "189", "jabatan": "JF Perencana", "unit": "SATUAN POLISI PAMONG PRAJA", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "190", "jabatan": "JF Perencana", "unit": "BADAN PERENCANAAN PEMBANGUNAN, RISET DAN INOVASI DAERAH", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "191", "jabatan": "JF Peneliti", "unit": "BADAN PERENCANAAN PEMBANGUNAN, RISET DAN INOVASI DAERAH", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "192", "jabatan": "JF Perekayasa", "unit": "BADAN PERENCANAAN PEMBANGUNAN, RISET DAN INOVASI DAERAH", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "193", "jabatan": "JF Pranata Komputer", "unit": "BADAN PERENCANAAN PEMBANGUNAN, RISET DAN INOVASI DAERAH", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "194", "jabatan": "JF Pengawas Mutu Hasil Pertanian", "unit": "BADAN PERENCANAAN PEMBANGUNAN, RISET DAN INOVASI DAERAH", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "195", "jabatan": "JF Pengawas Koperasi", "unit": "BADAN PERENCANAAN PEMBANGUNAN, RISET DAN INOVASI DAERAH", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "2 Januari 2025", "drive_menpan": "https://drive.google.com/file/d/1RZJvDw0wOcMKYLAhJX-4mLxfIQOruTRP/view?usp=drive_link", "ket": ""}, {"no": "196", "jabatan": "JF Penata Ruang", "unit": "BADAN PERENCANAAN PEMBANGUNAN, RISET DAN INOVASI DAERAH", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "2024-04-02 00:00:00", "drive_menpan": "https://drive.google.com/file/d/1blMq4t3Limr2jeObyh2jlIhkvt9rPIVG/view?usp=drive_link", "ket": ""}, {"no": "197", "jabatan": "JF Pengendali Dampak Lingkungan", "unit": "BADAN PERENCANAAN PEMBANGUNAN, RISET DAN INOVASI DAERAH", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "198", "jabatan": "JF Arsiparis", "unit": "BADAN PERENCANAAN PEMBANGUNAN, RISET DAN INOVASI DAERAH", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "199", "jabatan": "JF Analis Kebijakan", "unit": "BADAN PERENCANAAN PEMBANGUNAN, RISET DAN INOVASI DAERAH", "rekom_instansi": "7 Februari 2025", "drive_instansi": "https://drive.google.com/file/d/1Hwml78QfTKBFKihkjtM5-k1IUTSCXFZ4/view?usp=drive_link", "rekom_menpan": "24 Mei 2025", "drive_menpan": "https://drive.google.com/file/d/1L5sxCCPCJOgQG-ZYooM2L9SqB3Tbxeiv/view?usp=drive_link", "ket": ""}, {"no": "200", "jabatan": "JF Surveyor Pemetaan", "unit": "BADAN PERENCANAAN PEMBANGUNAN, RISET DAN INOVASI DAERAH", "rekom_instansi": "7 Juli 2026", "drive_instansi": "https://drive.google.com/file/d/1uF7-6QEXI4KQdOJqoTDiKXeXTXn6Bg2U/view?usp=drive_link", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "201", "jabatan": "JF Arsiparis", "unit": "BADAN  PENDAPATAN DAERAH", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "202", "jabatan": "JF Pranata Komputer", "unit": "BADAN  PENDAPATAN DAERAH", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "203", "jabatan": "JF Perencana", "unit": "BADAN  PENDAPATAN DAERAH", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "204", "jabatan": "JF Analis Keuangan Pusat dan Daerah", "unit": "BADAN  PENDAPATAN DAERAH", "rekom_instansi": "19 Mei 2025", "drive_instansi": "https://drive.google.com/file/d/1JjqiLPnkXKN6rYA3fmpznxbLtqszLaEl/view?usp=drive_link", "rekom_menpan": "3 Agustus 2025", "drive_menpan": "https://drive.google.com/file/d/1vHQWVwQzIjid0YvnojSVXL_08i9SWXKr/view?usp=sharing", "ket": ""}, {"no": "205", "jabatan": "JF Perencana", "unit": "Badan Pengelola Keuangan dan Aset Daerah", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "206", "jabatan": "JF Analis Keuangan Pusat dan Daerah", "unit": "Badan Pengelola Keuangan dan Aset Daerah", "rekom_instansi": "19 Mei 2025", "drive_instansi": "https://drive.google.com/file/d/1JjqiLPnkXKN6rYA3fmpznxbLtqszLaEl/view?usp=drive_link", "rekom_menpan": "3 Agustus 2025", "drive_menpan": "https://drive.google.com/file/d/1vHQWVwQzIjid0YvnojSVXL_08i9SWXKr/view?usp=sharing", "ket": ""}, {"no": "207", "jabatan": "JF Penilai Pemerintah", "unit": "Badan Pengelola Keuangan dan Aset Daerah", "rekom_instansi": "27 Februari 2025", "drive_instansi": "https://drive.google.com/file/d/1cx_Ew2-RH3mvd0Q2410sUaoCrxtyf7Sc/view?usp=drive_link", "rekom_menpan": "24 Mei 2025", "drive_menpan": "https://drive.google.com/file/d/1L5sxCCPCJOgQG-ZYooM2L9SqB3Tbxeiv/view?usp=drive_link", "ket": ""}, {"no": "208", "jabatan": "JF Perencana", "unit": "BADAN KESATUAN BANGSA DAN POLITIK", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "209", "jabatan": "JF Analis Kebijakan", "unit": "BADAN KESATUAN BANGSA DAN POLITIK", "rekom_instansi": "7 Februari 2025", "drive_instansi": "https://drive.google.com/file/d/1Hwml78QfTKBFKihkjtM5-k1IUTSCXFZ4/view?usp=drive_link", "rekom_menpan": "24 Mei 2025", "drive_menpan": "https://drive.google.com/file/d/1L5sxCCPCJOgQG-ZYooM2L9SqB3Tbxeiv/view?usp=drive_link", "ket": ""}, {"no": "210", "jabatan": "JF Arsiparis", "unit": "BADAN KESATUAN BANGSA DAN POLITIK", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "211", "jabatan": "JF Pranata Komputer", "unit": "BADAN KESATUAN BANGSA DAN POLITIK", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "212", "jabatan": "JF Perencana", "unit": "BADAN PENANGGULANGAN BENCANA DAERAH, PEMADAM KEBAKARAN DAN PENYELAMATAN", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "213", "jabatan": "JF Arsiparis", "unit": "BADAN PENANGGULANGAN BENCANA DAERAH, PEMADAM KEBAKARAN DAN PENYELAMATAN", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "214", "jabatan": "JF Pranata Komputer", "unit": "BADAN PENANGGULANGAN BENCANA DAERAH, PEMADAM KEBAKARAN DAN PENYELAMATAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "215", "jabatan": "JF Analis Kebencanaan", "unit": "BADAN PENANGGULANGAN BENCANA DAERAH, PEMADAM KEBAKARAN DAN PENYELAMATAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "19 Januari 2023", "drive_menpan": "https://drive.google.com/file/d/1HPZsdvR99_4x9yGb81cKkiXxCXEv7kLM/view?usp=drive_link", "ket": ""}, {"no": "216", "jabatan": "JF Analis Kebakaran", "unit": "BADAN PENANGGULANGAN BENCANA DAERAH, PEMADAM KEBAKARAN DAN PENYELAMATAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "217", "jabatan": "JF Penata Penanggulangan Bencana", "unit": "BADAN PENANGGULANGAN BENCANA DAERAH, PEMADAM KEBAKARAN DAN PENYELAMATAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "19 Januari 2023", "drive_menpan": "https://drive.google.com/file/d/1HPZsdvR99_4x9yGb81cKkiXxCXEv7kLM/view?usp=drive_link", "ket": ""}, {"no": "218", "jabatan": "JF Pemadam Kebakaran", "unit": "BADAN PENANGGULANGAN BENCANA DAERAH, PEMADAM KEBAKARAN DAN PENYELAMATAN", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "219", "jabatan": "JF Analis Sumber Daya Manusia Aparatur", "unit": "BADAN  KEPEGAWAIAN, PENDIDIKAN DAN PELATIHAN DAERAH", "rekom_instansi": "19 Maret 2024", "drive_instansi": "https://drive.google.com/file/d/1nMgqkvEG18yZ8tipEqHCpTAVrKAIM1Hc/view?usp=drive_link", "rekom_menpan": "18 Juni 2024", "drive_menpan": "https://drive.google.com/file/d/115yT3lPzrShNjQdjNj_O8RCrD4WdZllb/view?usp=drive_link", "ket": ""}, {"no": "220", "jabatan": "JF Pranata Sumber Daya Manusia Aparatur Terampil", "unit": "BADAN  KEPEGAWAIAN, PENDIDIKAN DAN PELATIHAN DAERAH", "rekom_instansi": "19 Maret 2024", "drive_instansi": "https://drive.google.com/file/d/1nMgqkvEG18yZ8tipEqHCpTAVrKAIM1Hc/view?usp=drive_link", "rekom_menpan": "18 Juni 2024", "drive_menpan": "https://drive.google.com/file/d/115yT3lPzrShNjQdjNj_O8RCrD4WdZllb/view?usp=drive_link", "ket": ""}, {"no": "221", "jabatan": "JF Arsiparis", "unit": "BADAN  KEPEGAWAIAN, PENDIDIKAN DAN PELATIHAN DAERAH", "rekom_instansi": "2 November2023", "drive_instansi": "https://drive.google.com/file/d/1oa1eRupB9muer2aemfA7-ZNxllsH_8Nw/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "222", "jabatan": "JF Perencana", "unit": "BADAN  KEPEGAWAIAN, PENDIDIKAN DAN PELATIHAN DAERAH", "rekom_instansi": "29 Agustus 2025", "drive_instansi": "https://drive.google.com/file/d/1_waRUJuKzui4IW2AcHpK2aVlgTy4DwrJ/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "223", "jabatan": "JF Dokter", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": "2 Link"}, {"no": "224", "jabatan": "JF Dokter Gigi", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": "2 Link"}, {"no": "225", "jabatan": "JF Apoteker", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "226", "jabatan": "JF Asisten Apoteker", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "227", "jabatan": "JF Pranata Laboratorium Kesehatan", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link  https://drive.google.com/file/d/1brhMjtDJs_YBRkakc0Nd3xBpFBhmyl_t/view?usp=drive_link", "ket": "ada 2 link"}, {"no": "228", "jabatan": "JF Radiografer", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "229", "jabatan": "JF Fisioterapis", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "230", "jabatan": "JF Nutrisionis", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "231", "jabatan": "JF Tenaga Sanitasi Lingkungan", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "232", "jabatan": "JF Penata Anastesi", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "233", "jabatan": "JF Asisten Penata Anastesi", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "234", "jabatan": "JF Terapis Gigi dan Mulut", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "235", "jabatan": "JF Tenaga Promosi Kesehatan dan Ilmu Prilaku", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "236", "jabatan": "JF Teknisi Elektromedis", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "237", "jabatan": "JF Teknisi Gigi", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "238", "jabatan": "JF Fisikawan Medis", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "239", "jabatan": "JF Psokolog Klinis", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}, {"no": "240", "jabatan": "JF Teknisi Transfusi Darah", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "241", "jabatan": "JF Terapis Wicara", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "242", "jabatan": "JF Okupasi Terapis", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "243", "jabatan": "JF Bidan", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "244", "jabatan": "JF Perawat", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "20 Desember 2025", "drive_menpan": "https://drive.google.com/file/d/1JtDUkvCtoGhKuVlbgxVs-Jdg9af-3XFP/view?usp=drive_link", "ket": ""}, {"no": "245", "jabatan": "JF Arsiparis", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "17 Mei 2024", "drive_instansi": "https://drive.google.com/file/d/1Xxi7ESYG071pp0kP-hFPQU3q37xLnGZ9/view?usp=drive_link", "rekom_menpan": "23 Februari 2024", "drive_menpan": "https://drive.google.com/file/d/1Kxm-DVubuwm0gB0Xh8OpM7XRSqVY5Kgc/view?usp=drive_link", "ket": ""}, {"no": "246", "jabatan": "JF Pranata Komputer", "unit": "RUMAH SAKIT UMUM DAERAH INDRASARI RENGAT", "rekom_instansi": "", "drive_instansi": "", "rekom_menpan": "", "drive_menpan": "", "ket": ""}];
+
+function computeStatus(row){
+  if(row.rekom_menpan) return 'done';
+  if(row.rekom_instansi) return 'progress';
+  return 'none';
+}
+
+const data = RAW_DATA.map((r, i) => ({...r, _status: computeStatus(r), _idx: i}));
+
+const STATUS_LABEL = {
+  done: 'Sudah rekom MenPAN RB',
+  progress: 'Baru rekom instansi',
+  none: 'Belum ada rekomendasi'
+};
+
+let sortKey = 'no';
+let sortDir = 1;
+const expanded = new Set();
+
+const els = {
+  search: document.getElementById('search'),
+  unitFilter: document.getElementById('unitFilter'),
+  statusFilter: document.getElementById('statusFilter'),
+  tbody: document.getElementById('tbody'),
+  resultCount: document.getElementById('resultCount'),
+  resetHint: document.getElementById('resetHint'),
+  emptyState: document.getElementById('emptyState'),
+  table: document.getElementById('dataTable'),
+};
+
+// populate unit filter
+const units = [...new Set(data.map(d => d.unit).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+units.forEach(u => {
+  const opt = document.createElement('option');
+  opt.value = u;
+  opt.textContent = u;
+  els.unitFilter.appendChild(opt);
+});
+
+function escHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function driveFileId(url){
+  const m = url.match(/\/file\/d\/([^/]+)\//);
+  return m ? m[1] : null;
+}
+
+function driveCell(urlField){
+  if(!urlField) return '<span class="dash">—</span>';
+  const links = urlField.split(/\s+(?=https?:\/\/)/).filter(Boolean);
+  return links.map((raw,i) => {
+    const u = raw.trim();
+    const id = driveFileId(u);
+    const n = links.length > 1 ? ' ' + (i+1) : '';
+    const viewLink = `<a class="drive-link" href="${escHtml(u)}" target="_blank" rel="noopener">Lihat${n} ↗</a>`;
+    const downloadLink = id
+      ? `<a class="drive-link dl" href="${escHtml('https://drive.google.com/uc?export=download&id=' + id)}" target="_blank" rel="noopener">Unduh${n} ⬇</a>`
+      : '';
+    return `<div class="berkas-row">${viewLink}${downloadLink ? ' · ' + downloadLink : ''}</div>`;
+  }).join('');
+}
+
+function render(){
+  const q = els.search.value.trim().toLowerCase();
+  const unit = els.unitFilter.value;
+  const status = els.statusFilter.value;
+
+  let filtered = data.filter(r => {
+    if(unit && r.unit !== unit) return false;
+    if(status && r._status !== status) return false;
+    if(q){
+      const hay = (r.jabatan + ' ' + r.unit).toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+
+  filtered.sort((a,b) => {
+    let va = a[sortKey], vb = b[sortKey];
+    if(sortKey === 'no'){ va = parseInt(va)||0; vb = parseInt(vb)||0; }
+    else { va = (va||'').toString().toLowerCase(); vb = (vb||'').toString().toLowerCase(); }
+    if(va < vb) return -1*sortDir;
+    if(va > vb) return 1*sortDir;
+    return 0;
+  });
+
+  els.resultCount.textContent = `Menampilkan ${filtered.length} dari ${data.length} baris`;
+  els.resetHint.style.display = (q || unit || status) ? 'inline' : 'none';
+
+  if(filtered.length === 0){
+    els.tbody.innerHTML = '';
+    els.emptyState.style.display = 'block';
+    els.table.style.display = 'none';
+  } else {
+    els.emptyState.style.display = 'none';
+    els.table.style.display = 'table';
+    els.tbody.innerHTML = filtered.map(r => {
+      const isOpen = expanded.has(r._idx);
+      const mainRow = `
+      <tr class="main-row" data-idx="${r._idx}">
+        <td class="no">${escHtml(r.no)}</td>
+        <td class="jabatan"><span class="chevron">${isOpen ? '▾' : '▸'}</span>${escHtml(r.jabatan)}</td>
+        <td class="unit">${escHtml(r.unit)}</td>
+        <td class="ket">${r.ket ? escHtml(r.ket) : '<span class="dash">—</span>'}</td>
+      </tr>`;
+      const detailRow = isOpen ? `
+      <tr class="detail-row">
+        <td colspan="4">
+          <div class="detail-grid">
+            <div class="detail-block">
+              <div class="detail-label">Rekom Instansi Pembina</div>
+              <div class="detail-date">${r.rekom_instansi ? escHtml(r.rekom_instansi) : '<span class="dash">—</span>'}</div>
+              ${driveCell(r.drive_instansi)}
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Status</div>
+              <div><span class="status-pill ${r._status}">${STATUS_LABEL[r._status]}</span></div>
+            </div>
+            <div class="detail-block">
+              <div class="detail-label">Rekom MenPAN RB</div>
+              <div class="detail-date">${r.rekom_menpan ? escHtml(r.rekom_menpan) : '<span class="dash">—</span>'}</div>
+              ${driveCell(r.drive_menpan)}
+            </div>
+          </div>
+        </td>
+      </tr>` : '';
+      return mainRow + detailRow;
+    }).join('');
+  }
+
+  window._filtered = filtered;
+}
+
+function updateStats(){
+  document.getElementById('statTotal').textContent = data.length;
+  document.getElementById('statDone').textContent = data.filter(d=>d._status==='done').length;
+  document.getElementById('statProgress').textContent = data.filter(d=>d._status==='progress').length;
+  document.getElementById('statNone').textContent = data.filter(d=>d._status==='none').length;
+  document.getElementById('badgeTotal').textContent = data.length;
+}
+
+els.search.addEventListener('input', render);
+els.unitFilter.addEventListener('change', render);
+els.statusFilter.addEventListener('change', render);
+els.resetHint.addEventListener('click', () => {
+  els.search.value = ''; els.unitFilter.value=''; els.statusFilter.value='';
+  render();
+});
+
+document.querySelectorAll('thead th[data-key]').forEach(th => {
+  th.addEventListener('click', () => {
+    const key = th.dataset.key;
+    if(sortKey === key){ sortDir *= -1; } else { sortKey = key; sortDir = 1; }
+    document.querySelectorAll('thead th .arrow').forEach(a => a.textContent='');
+    th.querySelector('.arrow').textContent = sortDir === 1 ? '▲' : '▼';
+    render();
+  });
+});
+
+els.tbody.addEventListener('click', (e) => {
+  const row = e.target.closest('tr.main-row');
+  if(!row) return;
+  const idx = parseInt(row.dataset.idx, 10);
+  if(expanded.has(idx)) expanded.delete(idx); else expanded.add(idx);
+  render();
+});
+
+updateStats();
+render();
+</script>
+
+</body>
+</html>

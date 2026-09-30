@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<title>Dashboard Kelembagaan – Perbup SOTK 2027</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f4f6f9;--card:#fff;--tx:#1b2430;--mut:#64707f;--bd:#dde2e9;--ac:#1f5fbf;--ok:#1a8a55;--wa:#c77a08;--tr:#e6eaf0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12161c;--card:#1b212a;--tx:#e8ecf1;--mut:#93a0b0;--bd:#2c3542;--ac:#5b9bff;--ok:#3ccb85;--wa:#f0a53a;--tr:#2a323e}}
+:root[data-theme="dark"]{--bg:#12161c;--card:#1b212a;--tx:#e8ecf1;--mut:#93a0b0;--bd:#2c3542;--ac:#5b9bff;--ok:#3ccb85;--wa:#f0a53a;--tr:#2a323e}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:1.35rem;margin:0}
+.sub{color:var(--mut);margin:2px 0 18px;font-size:.9rem}
+.top{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kpi{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px}
+.kpi b{display:block;font-size:1.7rem;line-height:1.1}
+.kpi span{color:var(--mut);font-size:.8rem}
+.tw{overflow-x:auto;margin-bottom:18px;background:var(--card);border:1px solid var(--bd);border-radius:14px}
+table{border-collapse:collapse;width:100%;min-width:960px;font-size:.82rem}
+th,td{padding:9px 8px;text-align:center;border-bottom:1px solid var(--bd)}
+th{color:var(--mut);font-weight:600;font-size:.72rem}
+th:first-child,td:first-child{text-align:left;padding-left:14px;font-weight:600}
+tr:last-child td{border-bottom:0}
+tr.pr{cursor:pointer}
+tr.pr:hover td{background:var(--tr)}
+.ar{display:inline-block;width:16px;color:var(--mut)}
+tr.ex td{text-align:left;vertical-align:top;background:rgba(26,138,85,.06);font-size:.78rem}
+td.c span{display:inline-block;min-width:44px;padding:3px 8px;border-radius:99px;background:var(--tr);color:var(--mut)}
+td.c.done span{background:var(--ok);color:#fff}td.c.cur span{background:var(--wa);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,480px),1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px}
+.hd{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.hd h2{font-size:1.05rem;margin:0}
+.badge{font-size:.72rem;padding:3px 9px;border-radius:99px;background:var(--tr);color:var(--mut);white-space:nowrap}
+.badge.ok{background:var(--ok);color:#fff}.badge.go{background:var(--wa);color:#fff}
+.bar{height:8px;background:var(--tr);border-radius:9px;overflow:hidden;margin:10px 0 4px}
+.bar i{display:block;height:100%;background:var(--ac);transition:width .3s}
+.pct{font-size:.8rem;color:var(--mut)}
+.steps{display:flex;gap:4px;margin:14px 0 10px;overflow-x:auto}
+.st{flex:1;min-width:64px;text-align:center;font-size:.68rem;color:var(--mut);background:none;border:0;padding:4px 0;border-radius:8px;cursor:pointer;font-family:inherit}
+.st.sel{background:var(--tr);color:var(--tx);font-weight:600}
+.st.sel u{outline:2px solid var(--ac);outline-offset:2px}
+.st u{display:grid;place-items:center;width:26px;height:26px;margin:0 auto 4px;border-radius:50%;background:var(--tr);text-decoration:none;font-weight:600;font-size:.78rem}
+.st.done u{background:var(--ok);color:#fff}.st.cur u{background:var(--wa);color:#fff}
+.stg{border-top:1px solid var(--bd);padding:8px 0}
+.stg h3{font-size:.82rem;margin:0 0 4px;color:var(--mut);font-weight:600}
+.dc{display:flex;gap:8px;align-items:flex-start;padding:3px 0;font-size:.9rem}
+.dc i{font-style:normal;flex:none;width:18px;text-align:center;color:var(--mut)}
+.dc.on i{color:var(--ok);font-weight:700}
+.dc.on span{color:var(--mut)}
+.msg{padding:18px;color:var(--mut);background:var(--card);border:1px solid var(--bd);border-radius:14px;margin-bottom:18px}
+.msg.err{border-color:var(--wa)}
+a.btn{display:inline-block;text-decoration:none;background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:8px;padding:6px 12px;font-size:.8rem}
+.ft{display:flex;gap:8px;margin-top:18px;align-items:center;color:var(--mut);font-size:.8rem;flex-wrap:wrap}
+button{background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:8px;padding:6px 12px;cursor:pointer;font:inherit;font-size:.8rem}
+
+/* ===== tampilan baru ===== */
+:root{--bg:#eaf1f5;--card:#fff;--tx:#12283b;--mut:#5b6f80;--bd:#d9e3ea;--ac:#0e7c7b;--ok:#178a55;--wa:#c98a12;--tr:#e4edf2;--navy:#0b2540;--gold:#d9a441;--th:#eaf3f6;--shadow:0 10px 30px rgba(11,37,64,.09)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1520;--card:#122132;--tx:#e6eef5;--mut:#8ea3b5;--bd:#22384c;--ac:#3ec2bf;--ok:#3ccb85;--wa:#f0b13a;--tr:#1a2e42;--th:#17293c;--shadow:0 10px 30px rgba(0,0,0,.35)}}
+:root[data-theme="dark"]{--bg:#0a1520;--card:#122132;--tx:#e6eef5;--mut:#8ea3b5;--bd:#22384c;--ac:#3ec2bf;--ok:#3ccb85;--wa:#f0b13a;--tr:#1a2e42;--th:#17293c;--shadow:0 10px 30px rgba(0,0,0,.35)}
+body{font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:radial-gradient(900px 500px at 100% 380px,rgba(14,124,123,.10),transparent 60%),radial-gradient(700px 420px at 0 700px,rgba(217,164,65,.10),transparent 60%),var(--bg);background-attachment:fixed}
+.hero{position:relative;color:#fff;border-bottom:4px solid var(--gold);padding:34px 16px 78px;
+background:radial-gradient(600px 300px at 92% 0,rgba(217,164,65,.30),transparent 65%),
+linear-gradient(45deg,rgba(255,255,255,.045) 25%,transparent 25%) 0 0/34px 34px,
+linear-gradient(-45deg,rgba(255,255,255,.045) 25%,transparent 25%) 0 0/34px 34px,
+linear-gradient(120deg,#0b2540 0%,#0d4467 52%,#0e7c7b 100%)}
+.hi{max-width:1180px;margin:0 auto}
+.hero h1{font-size:clamp(1.5rem,4vw,2.1rem);font-weight:800;letter-spacing:-.01em;line-height:1.15;color:#fff}
+.hero .sub{color:rgba(255,255,255,.82);font-size:.98rem;margin:8px 0 0;max-width:640px}
+main{max-width:1180px;position:relative;margin-top:-52px}
+.kpi{border:0;border-top:4px solid var(--ac);box-shadow:var(--shadow);border-radius:14px;padding:16px 16px 14px}
+.kpi:nth-child(1){border-top-color:#0b4a73}.kpi:nth-child(2){border-top-color:var(--ac)}.kpi:nth-child(3){border-top-color:var(--gold)}.kpi:nth-child(4){border-top-color:var(--ok)}
+.kpi b{font-size:2rem;font-weight:800;letter-spacing:-.02em}
+.kpi span{font-weight:500}
+.tw{border:0;border-radius:16px;box-shadow:var(--shadow)}
+th{background:var(--th);color:var(--tx);font-weight:700;padding:12px 8px}
+td{padding:12px 8px}
+td.c span{font-weight:600}
+tr.pr td:first-child{font-weight:700}
+tr.pr:hover td{background:var(--th)}
+tr.ex td{background:var(--th)}
+.ar{color:var(--ac);font-weight:700}
+.ft{justify-content:center;text-align:center}
+.jb{display:inline-block;padding:2px 11px;border-radius:99px;background:var(--th);color:var(--ac);font-weight:700;font-size:.74rem}
+</style>
+</head>
+<body>
+<header class="hero"><div class="hi">
+<h1>Dashboard Kelembagaan</h1>
+<p class="sub">Pengusulan Peraturan Bupati SOTK Perangkat Daerah Tahun 2027</p>
+</div></header>
+<main>
+<div id="st" class="msg">Memuat data dari Google Sheet…</div>
+<div id="app" hidden>
+<div class="top" id="kpi"></div>
+<div class="tw" id="tw"></div>
+</div>
+<div class="ft"><span id="upd"></span></div>
+<div class="ft" style="justify-content:center;text-align:center"><span>Kelembagaan-2026</span></div>
+</main>
+<script>
+const CSV_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vT1AwDC1XmeYfWEVjeyJffhAmB_I-RuQmHwflTAdBaYUkZKtfJSVGPtPAnEAl5fCcGsnfDmhE6jSNXY/pub?output=csv";
+const SNAP=`,,,,,,,,,,,,,,,,,,
+1. DLHKP SOTK,SOTK,1,,,2,,,3,,,4,,,5,,,6,
+,,Usulan,ceklis,,Rekom Biro Organisasi Provinsi,ceklis,,Bagian Hukum,ceklis,,Harmonisasi Perbup,ceklis,,Fasilitasi,ceklis,,TTD BUPATI,ceklis
+,,a. Surat Usulan,v,,a. Surat Rekomendasi Biro Organisasi Provinsi,,,a. Verifikasi Draft Perbup,,,a. Berita Acara Harmonisasi Perbup,,,a. Matrik Perbup,ceklis,,TTD BUPATI,
+,,b. Telaah Staf/Kajian Akademis,v,,,,,,,,,,,,,,,
+,,c. DRAFT Perbup,v,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+2. DLHKP UPTD,UPTD,1,,,2,,,3,,,4,,,5,,,6,
+,,Usulan,,,Rekom Biro Organisasi Provinsi,,,Bagian Hukum,,,Harmonisasi Perbup,,,Fasilitasi,,,TTD BUPATI,
+,,a. Surat Usulan,,,a. Surat Rekomendasi Biro Organisasi Provinsi,,,a. Verifikasi Draft Perbup,,,a. Berita Acara Harmonisasi Perbup,,,a. Matrik Perbup,,,,
+,,b. Telaah Staf/Kajian Akademis,,,,,,,,,,,,,,,,
+,,c. DRAFT Perbup,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+3. DINAS KESEHATAN SOTK,SOTK,1,,,2,,,3,,,4,,,5,,,6,
+,,Usulan,,,Rekom Biro Organisasi Provinsi,,,Bagian Hukum,,,Harmonisasi Perbup,,,Fasilitasi,,,TTD BUPATI,
+,,a. Surat Usulan,,,a. Surat Rekomendasi Biro Organisasi Provinsi,,,a. Verifikasi Draft Perbup,,,a. Berita Acara Harmonisasi Perbup,,,a. Matrik Perbup,,,,
+,,b. Telaah Staf/Kajian Akademis,,,,,,,,,,,,,,,,
+,,c. DRAFT Perbup,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+4. INSPEKTORAT SOTK,SOTK,1,,,2,,,3,,,4,,,5,,,6,
+,,Usulan,,,Rekom Biro Organisasi Provinsi,,,Bagian Hukum,,,Harmonisasi Perbup,,,Fasilitasi,,,TTD BUPATI,
+,,a. Surat Usulan,,,a. Surat Rekomendasi Biro Organisasi Provinsi,,,a. Verifikasi Draft Perbup,,,a. Berita Acara Harmonisasi Perbup,,,a. Matrik Perbup,,,,
+,,b. Telaah Staf/Kajian Akademis,,,,,,,,,,,,,,,,
+,,c. DRAFT Perbup,,,,,,,,,,,,,,,,`;
+const SHORT={"Rekom Biro Organisasi Provinsi":"Rekom Biro Org.","Bagian Hukum":"Bag. Hukum","Harmonisasi Perbup":"Harmonisasi"};
+let D=[],SEL={},OPEN=new Set();
+const $=id=>document.getElementById(id);
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function csv(t){
+ const R=[];let r=[],c="",q=false;
+ for(let i=0;i<t.length;i++){const h=t[i];
+  if(q){if(h==='"'){if(t[i+1]==='"'){c+='"';i++}else q=false}else c+=h}
+  else if(h==='"')q=true;
+  else if(h===","){r.push(c);c=""}
+  else if(h==="\n"){r.push(c);R.push(r);r=[];c=""}
+  else if(h!=="\r")c+=h;
+ }
+ r.push(c);R.push(r);return R;
+}
+const yes=v=>/^(true|ya|yes|y|v|x|✓|✔|selesai|done|sudah)$/i.test((v||"").trim());
+function parse(t){
+ const R=csv(t),starts=[];
+ R.forEach((r,i)=>{if(/^\s*\d+\.\s*\S/.test(r[0]||""))starts.push(i)});
+ return starts.map((i,bi)=>{
+  const end=bi+1<starts.length?starts[bi+1]:R.length;
+  const cols=[];R[i].forEach((v,j)=>{if(j>0&&/^\d+$/.test((v||"").trim()))cols.push(j)});
+  const st=cols.map((c,k)=>{
+   let name=((R[i+1]||[])[c]||"").trim();
+   if(name.toUpperCase()==="TTD BUPATI")name="TTD Bupati";
+   const docs=[];
+   for(let y=i+2;y<end;y++){const v=((R[y]||[])[c]||"").trim();
+    if(/^[a-z]\.\s*\S/i.test(v))docs.push({t:v.replace(/^[a-z]\.\s*/i,""),ok:yes((R[y]||[])[c+1])});}
+   if(!docs.length)docs.push({t:name,ok:yes((R[i+1]||[])[c+1])||yes((R[i+2]||[])[c+1])});
+   return{n:k+1,name,docs};
+  });
+  const jv=(R[i][1]||"").trim();return{t:R[i][0].trim(),j:/^\d+$/.test(jv)?"":jv,st};
+ });
+}
+function calc(p){
+ let tot=0,dn=0,cur=-1;
+ const full=p.st.map((s,i)=>{const c=s.docs.filter(d=>d.ok).length;tot+=s.docs.length;dn+=c;const f=c===s.docs.length;if(!f&&cur<0)cur=i;return f});
+ return{tot,dn,full,cur};
+}
+const nm=s=>SHORT[s.name]||s.name;
+function render(){
+ if(!D.length)return;
+ let all=0,alld=0,fin=0,run=0,rows="";
+ D.forEach(p=>{
+  const r=calc(p);all+=r.tot;alld+=r.dn;
+  const done=r.cur<0;if(done)fin++;else if(r.dn>0)run++;
+  const pc=Math.round(r.dn/r.tot*100);
+  const op=OPEN.has(p.t);
+  rows+=`<tr class="pr" data-k="${esc(p.t)}"><td><span class="ar">${op?"▾":"▸"}</span>${esc(p.t.replace(/\s+(SOTK|UPTD)\s*$/i,""))}</td><td><span class="jb">${esc(p.j||"-")}</span></td>`+p.st.map((s,i)=>{const c=s.docs.filter(d=>d.ok).length;
+   return `<td class="c ${r.full[i]?"done":i===r.cur&&r.dn>0?"cur":""}"><span>${r.full[i]?"✓ ":""}${c}/${s.docs.length}</span></td>`}).join("")+`<td><b>${pc}%</b></td></tr>`;
+  if(op)rows+=`<tr class="ex"><td></td><td></td>`+p.st.map(s=>`<td>`+s.docs.map((d,j)=>`<div class="dc ${d.ok?"on":""}"><i>${d.ok?"✓":"○"}</i><span>${s.docs.length>1?String.fromCharCode(97+j)+". ":""}${esc(d.t)}</span></div>`).join("")+`</td>`).join("")+`<td></td></tr>`;
+ });
+ const heads=D.reduce((a,p)=>p.st.length>a.length?p.st:a,[]);
+ $("tw").innerHTML=`<table><thead><tr><th>Perangkat Daerah</th><th>Jenis</th>`+heads.map(s=>`<th>${s.n}. ${esc(nm(s))}</th>`).join("")+`<th>Progres</th></tr></thead><tbody>${rows}</tbody></table>`;
+ $("kpi").innerHTML=`<div class="kpi"><b>${D.length}</b><span>Usulan Perbup</span></div><div class="kpi"><b>${Math.round(alld/all*100)}%</b><span>Progres keseluruhan</span></div><div class="kpi"><b>${run}</b><span>Sedang berproses</span></div><div class="kpi"><b>${fin}</b><span>Selesai (TTD Bupati)</span></div>`;
+}
+function msg(t,err){const m=$("st");m.hidden=false;m.className="msg"+(err?" err":"");m.textContent=t}
+async function load(live){
+ let txt=null;
+ try{
+  const r=await fetch(CSV_URL+"&t="+Date.now(),{cache:"no-store"});
+  if(!r.ok)throw new Error(r.status);
+  txt=await r.text();
+  $("upd").textContent="Data langsung dari Google Sheet • "+new Date().toLocaleTimeString("id-ID",{hour:"2-digit",minute:"2-digit"});
+  $("st").hidden=true;
+ }catch(e){
+  txt=SNAP;
+  $("upd").textContent="";
+  $("st").hidden=true;
+ }
+ const d=parse(txt);
+ if(!d.length){msg("Data ceklis tidak terbaca dari Google Sheet.",true);return}
+ D=d;$("app").hidden=false;render();
+}
+$("tw").addEventListener("click",e=>{
+ const r=e.target.closest("tr.pr");if(!r)return;
+ const k=r.dataset.k;OPEN.has(k)?OPEN.delete(k):OPEN.add(k);render();
+});
+load();setInterval(load,60000);
+</script>
+</body>
+</html>
