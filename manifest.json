@@ -1,6 +1,6 @@
 {
-  "name": "Portal link App",
-  "short_name": "link2app",
+  "name": "Kumpulan Link",
+  "short_name": "Kumpulanlink",
   "description": "Kumpulan modul, visualisasi, dan alat bantu interaktif",
   "start_url": "./index.html",
   "display": "standalone",
